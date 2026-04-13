@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Idea Dummy App</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5efe3;
+        --panel: #fffaf1;
+        --ink: #1f2a2e;
+        --muted: #5d6a70;
+        --line: #d9cdb7;
+        --accent: #0b6b66;
+        --accent-soft: #d7efeb;
+        --warn: #b04e32;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(11, 107, 102, 0.12), transparent 32%),
+          linear-gradient(180deg, #f8f1e7 0%, #f2eadc 100%);
+        color: var(--ink);
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        width: fit-content;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 4rem);
+        line-height: 0.95;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 10px 30px rgba(31, 42, 46, 0.06);
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+      }
+
+      .meta {
+        display: grid;
+        gap: 8px;
+      }
+
+      .meta div {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 8px;
+        font-size: 14px;
+      }
+
+      .meta strong {
+        color: var(--ink);
+      }
+
+      form {
+        display: grid;
+        gap: 10px;
+      }
+
+      input,
+      button {
+        font: inherit;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: white;
+      }
+
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: var(--accent);
+        color: white;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .status-ok {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .status-bad {
+        color: var(--warn);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <span class="eyebrow" id="env-badge">loading</span>
+        <h1 id="app-title">Idea Dummy App</h1>
+        <p>
+          Same-origin frontend and backend sample for `idea`.
+          The UI always calls the backend through `/api`.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Runtime</h2>
+          <div class="meta">
+            <div><span>Environment</span><strong id="app-env">-</strong></div>
+            <div><span>API Base</span><strong id="api-base">-</strong></div>
+            <div><span>Backend Health</span><strong id="health-state">checking</strong></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Create Message</h2>
+          <form id="message-form">
+            <input id="author" name="author" placeholder="Author" value="demo-user" />
+            <input id="text" name="text" placeholder="Message" value="hello from frontend" />
+            <button type="submit">Send To Backend</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Messages</h2>
+          <ul id="messages"></ul>
+        </article>
+      </section>
+    </main>
+
+    <script src="/config.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
+
