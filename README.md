@@ -3,6 +3,12 @@
 이 저장소는 `idea` 플랫폼용 최소 예제 앱 저장소다.  
 frontend와 backend를 분리하고, backend가 PostgreSQL 연결과 health check를 제공하는 가장 단순한 구조를 보여준다.
 
+중요한 점:
+
+- 이 repo는 독립적인 웹 서비스 소스 저장소다
+- 이 repo는 Cloudflare, IP allowlist, Argo CD destination, Ncloud target, 운영용 secret 값을 소유하지 않는다
+- 그런 배포 정책은 전부 `idea`의 `tmp` 서비스가 런타임 `Project State`로 관리한다
+
 구성:
 
 - `frontend`
@@ -56,6 +62,18 @@ docker compose up --build
 - DB는 외부 공개 대상이 아니다
 - app 내부 nginx는 정적 파일 서빙만 담당한다
 - 외부 hostname과 `/api` 라우팅은 플랫폼 `Caddy`가 맡는 것을 기본으로 한다
+
+즉 이 repo는 아래 항목을 직접 책임지지 않는다.
+
+- Cloudflare Tunnel 생성
+- IP 접속 차단
+- WAF / allowlist
+- dev / stage / prod의 실제 운영 env 값 저장
+- Ncloud target 선택
+- Argo CD destination 선택
+- GitOps manifest 생성
+
+이 값들은 전부 `idea/tmp`가 런타임에 주입한다.
 
 ## Register In idea UI
 
