@@ -1,104 +1,61 @@
-# Dummy App Repo
+# Idea Time Sample
 
-이 디렉터리는 `idea` 플랫폼용 예제 앱 저장소다.  
-그대로 별도 Git 저장소로 복사한 뒤, `idea` 웹 UI에서 런타임에 등록하는 용도로 만든다.
+이 저장소는 `idea` 플랫폼용 최소 예제 앱 저장소다.  
+frontend와 backend를 분리하고, backend가 PostgreSQL 연결과 health check를 제공하는 가장 단순한 구조를 보여준다.
 
 구성:
 
 - `frontend`
   - 정적 웹 UI
-  - 같은 origin의 `/api`로 backend 호출
+  - runtime config로 받은 `PUBLIC_API_BASE_URL`로 backend 호출
 - `backend`
   - Node.js API
-  - PostgreSQL에 메시지 저장
-  - `/api/healthz`, `/api/readyz` 제공
-- `db`
-  - PostgreSQL bootstrap SQL
+  - PostgreSQL의 현재 시간과 DB 이름 반환
+  - `/api/healthz`, `/api/readyz`, `/api/time` 제공
 - `docker-compose.yml`
   - 로컬 실행과 구조 파악용 입력 원본
 
 ## Directory Layout
 
 ```text
-app/
+repo_example/
   frontend/
   backend/
-  db/
   docker-compose.yml
   .env.example
-  .env.dev
-  .env.stage
-  .env.prod
-  scripts/use-env.sh
   runtime-project-input.example.json
 ```
 
 ## Environment File Strategy
 
-이 예제는 두 가지 방식으로 env를 관리한다.
-
-1. 선택된 현재 환경
-   - `.env.dev`, `.env.stage`, `.env.prod` 중 하나를 `.env`로 복사
-   - 일반적인 `docker compose up --build`에 사용
-2. 병렬 환경 실행
-   - `docker compose --env-file .env.dev ...`
-   - `docker compose --env-file .env.stage ...`
-   - `docker compose --env-file .env.prod ...`
-
-각 env 파일에는 다음이 들어 있다.
-
-- `COMPOSE_PROJECT_NAME`
-- `APP_ENV`
-- `APP_DISPLAY_NAME`
-- `PUBLIC_API_BASE_PATH`
-- `APP_MESSAGE`
-- host port
-- PostgreSQL 계정/비밀번호
-
-`stage`, `prod`는 서로 다른 host port를 써서 로컬에서도 동시에 띄울 수 있게 해뒀다.
-
-중요한 점:
-
-- 이 파일들은 로컬 개발용이다
-- 실제 배포용 `dev / stage / prod` env와 secret은 `idea` 웹 UI에서 런타임에 입력한다
-- 즉 배포 시스템은 `.env.dev`, `.env.stage`, `.env.prod`를 canonical source로 취급하지 않는다
+- repo에는 `.env.example`만 둔다
+- 실제 `.env`는 로컬에서만 생성한다
+- 실제 `dev / stage / prod` 값은 `idea` 웹 UI에서 런타임에 입력한다
+- 즉 배포 시스템은 repo의 env 파일을 canonical source로 취급하지 않는다
 
 ## Local Run
 
-현재 환경으로 실행:
+`.env.example`를 `.env`로 복사하고 실행한다.
 
 ```bash
-./scripts/use-env.sh dev
+cp .env.example .env
 docker compose up --build
 ```
 
-다른 환경으로 바꾸려면:
+기본 접속:
 
-```bash
-./scripts/use-env.sh stage
-docker compose up --build
-```
-
-병렬 실행 예시:
-
-```bash
-docker compose --env-file .env.dev up --build -d
-docker compose --env-file .env.stage up --build -d
-docker compose --env-file .env.prod up --build -d
-```
-
-접속 예시:
-
-- dev frontend: `http://localhost:3000`
-- stage frontend: `http://localhost:3100`
-- prod frontend: `http://localhost:3200`
+- frontend: `http://localhost:3000`
+- backend health: `http://localhost:8080/api/healthz`
+- backend time: `http://localhost:8080/api/time`
 
 ## Runtime Contract
 
 - 외부 진입점은 frontend 하나라고 가정한다
-- frontend는 `/api` 상대 경로로 backend를 호출한다
+- frontend는 injected `PUBLIC_API_BASE_URL`로 backend를 호출한다
 - backend는 `db` 서비스명으로 PostgreSQL에 붙는다
 - DB는 외부 공개 대상이 아니다
+- app 내부 nginx는 정적 파일 서빙만 담당한다
+- 외부 hostname과 `/api` 라우팅은 플랫폼 `Caddy`가 맡는 것을 기본으로 한다
 
 ## Register In idea UI
 
@@ -118,12 +75,10 @@ docker compose --env-file .env.prod up --build -d
 - AWS 또는 On-Prem target profile
 - hostname / Caddy routing
 
-예시는 [runtime-project-input.example.json](/mnt/c/Users/rudgh/idea/app/runtime-project-input.example.json:1)에 넣어뒀다.
+예시는 [runtime-project-input.example.json](./runtime-project-input.example.json)에 넣어뒀다.
 
 ## API Endpoints
 
 - `GET /api/healthz`
 - `GET /api/readyz`
-- `GET /api/config`
-- `GET /api/messages`
-- `POST /api/messages`
+- `GET /api/time`

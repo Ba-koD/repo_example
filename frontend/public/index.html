@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Idea Dummy App</title>
+    <title>Idea Time Sample</title>
     <style>
       :root {
         color-scheme: light;
@@ -69,7 +69,7 @@
       .grid {
         display: grid;
         gap: 16px;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
       .card {
@@ -152,10 +152,11 @@
     <main>
       <section class="hero">
         <span class="eyebrow" id="env-badge">loading</span>
-        <h1 id="app-title">Idea Dummy App</h1>
+        <h1 id="app-title">Idea Time Sample</h1>
         <p>
-          Same-origin frontend and backend sample for `idea`.
-          The UI always calls the backend through `/api`.
+          Runtime-configured frontend and backend sample for `idea`.
+          The UI reads the backend address from injected config and shows both
+          application time and database time.
         </p>
       </section>
 
@@ -164,23 +165,27 @@
           <h2>Runtime</h2>
           <div class="meta">
             <div><span>Environment</span><strong id="app-env">-</strong></div>
-            <div><span>API Base</span><strong id="api-base">-</strong></div>
+            <div><span>API Base URL</span><strong id="api-base">-</strong></div>
             <div><span>Backend Health</span><strong id="health-state">checking</strong></div>
           </div>
         </article>
 
         <article class="card">
-          <h2>Create Message</h2>
-          <form id="message-form">
-            <input id="author" name="author" placeholder="Author" value="demo-user" />
-            <input id="text" name="text" placeholder="Message" value="hello from frontend" />
-            <button type="submit">Send To Backend</button>
-          </form>
+          <h2>Backend</h2>
+          <div class="meta">
+            <div><span>Backend Host</span><strong id="hostname">-</strong></div>
+            <div><span>App Time</span><strong id="app-time">-</strong></div>
+            <div><span>Database Time</span><strong id="database-time">-</strong></div>
+            <div><span>Database Name</span><strong id="database-name">-</strong></div>
+          </div>
         </article>
 
         <article class="card">
-          <h2>Messages</h2>
-          <ul id="messages"></ul>
+          <h2>Notes</h2>
+          <p>
+            In local compose, set <code>PUBLIC_API_BASE_URL=http://localhost:8080/api</code>.
+            In `idea` platform runtime, inject <code>/api</code> and let the platform Caddy route it.
+          </p>
         </article>
       </section>
     </main>
@@ -189,4 +194,3 @@
     <script src="/app.js"></script>
   </body>
 </html>
-

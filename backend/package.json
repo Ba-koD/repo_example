@@ -2,13 +2,11 @@
   "name": "idea-dummy-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "Dummy backend for the idea platform sample app repo.",
+  "description": "Time and health backend for the idea platform sample app repo.",
   "scripts": {
-    "start": "node server.js",
-    "migrate": "node scripts/migrate.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "pg": "8.12.0"
   }
 }
-

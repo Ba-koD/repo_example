@@ -1,9 +1,7 @@
-# DB Bootstrap
+# DB Notes
 
-이 디렉터리는 로컬 `docker-compose` 실행용 PostgreSQL bootstrap SQL을 담는다.
+이 디렉터리는 현재 로컬 PostgreSQL 관련 메모만 둔다.
 
-- `init/001-app.sql`
-  - 첫 초기화 시 `messages` 테이블과 기본 row를 만든다
-
-배포 환경에서는 앱 migration hook가 같은 schema를 다시 idempotent하게 맞춘다.
-
+- 이 샘플 앱은 별도 bootstrap SQL 없이도 실행된다
+- backend는 PostgreSQL 연결 후 `select now()`로 DB 상태를 확인한다
+- 배포 환경에서는 `idea` 플랫폼이 주입한 runtime secret과 내부 service name으로 DB에 연결한다

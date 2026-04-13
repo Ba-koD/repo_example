@@ -102,7 +102,7 @@ repo-b/
 권장 기본값:
 
 ```env
-PUBLIC_API_BASE_PATH=/api
+PUBLIC_API_BASE_URL=/api
 ```
 
 즉 frontend는 배포 후 `http://localhost:8080` 같은 주소를 직접 알 필요가 없어야 한다.
@@ -128,7 +128,7 @@ PUBLIC_API_BASE_PATH=/api
 ```env
 PORT=8080
 DATABASE_URL=postgres://app:password@db:5432/app
-PUBLIC_API_BASE_PATH=/api
+PUBLIC_API_BASE_URL=/api
 ```
 
 ---
@@ -234,7 +234,7 @@ PUBLIC_API_BASE_PATH=/api
 
 ### Frontend
 - `PUBLIC_BASE_URL`
-- `PUBLIC_API_BASE_PATH`
+- `PUBLIC_API_BASE_URL`
 
 ### Backend
 - `APP_ENV`
@@ -280,7 +280,7 @@ PUBLIC_API_BASE_PATH=/api
 
 ```env
 PUBLIC_BASE_URL=http://localhost:3000
-PUBLIC_API_BASE_PATH=/api
+PUBLIC_API_BASE_URL=/api
 
 APP_ENV=local
 PORT=8080

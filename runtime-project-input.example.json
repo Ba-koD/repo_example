@@ -74,26 +74,29 @@
   "env": {
     "dev": {
       "APP_ENV": "dev",
-      "PUBLIC_API_BASE_PATH": "/api"
+      "APP_DISPLAY_NAME": "Idea Time Sample Dev",
+      "PUBLIC_API_BASE_URL": "/api"
     },
     "stage": {
       "APP_ENV": "stage",
-      "PUBLIC_API_BASE_PATH": "/api"
+      "APP_DISPLAY_NAME": "Idea Time Sample Stage",
+      "PUBLIC_API_BASE_URL": "/api"
     },
     "prod": {
       "APP_ENV": "prod",
-      "PUBLIC_API_BASE_PATH": "/api"
+      "APP_DISPLAY_NAME": "Idea Time Sample Prod",
+      "PUBLIC_API_BASE_URL": "/api"
     }
   },
   "secrets": {
     "dev": {
-      "DATABASE_URL": "secret://idea-dummy-dev-database-url"
+      "DATABASE_URL": "secret://idea-time-dev-database-url"
     },
     "stage": {
-      "DATABASE_URL": "secret://idea-dummy-stage-database-url"
+      "DATABASE_URL": "secret://idea-time-stage-database-url"
     },
     "prod": {
-      "DATABASE_URL": "secret://idea-dummy-prod-database-url"
+      "DATABASE_URL": "secret://idea-time-prod-database-url"
     }
   },
   "access": {
