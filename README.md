@@ -70,9 +70,11 @@ docker compose up --build
 - frontend Dockerfile path: `frontend/Dockerfile`
 - backend build context: `backend`
 - backend Dockerfile path: `backend/Dockerfile`
+- Cloudflare API secret
+- Ncloud access key / secret key
 - `dev / stage / prod` env / secret
 - Argo CD project / destination / GitOps repo 정보
-- AWS 또는 On-Prem target profile
+- Ncloud 또는 On-Prem target profile
 - hostname / Caddy routing
 
 예시는 [runtime-project-input.example.json](./runtime-project-input.example.json)에 넣어뒀다.

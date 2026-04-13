@@ -4,6 +4,7 @@
 
   const title = document.getElementById("app-title");
   const badge = document.getElementById("env-badge");
+  const envSummary = document.getElementById("env-summary");
   const envValue = document.getElementById("app-env");
   const apiBaseValue = document.getElementById("api-base");
   const healthState = document.getElementById("health-state");
@@ -21,6 +22,7 @@
     badge.textContent = config.APP_ENV || "unknown";
     envValue.textContent = config.APP_ENV || "unknown";
     apiBaseValue.textContent = apiBase;
+    envSummary.textContent = `This screen is running with the ${config.APP_ENV || "unknown"} environment.`;
 
     try {
       const response = await fetch(apiUrl("/healthz"));
@@ -30,6 +32,7 @@
       }
 
       const payload = await response.json();
+      envSummary.textContent = `This screen is running with the ${payload.environment || config.APP_ENV || "unknown"} environment.`;
       healthState.textContent = payload.status === "ok" ? "healthy" : payload.status || "unknown";
       healthState.className = payload.status === "ok" ? "status-ok" : "status-bad";
       hostnameValue.textContent = payload.hostname || "-";
