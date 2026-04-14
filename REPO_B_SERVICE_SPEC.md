@@ -241,7 +241,7 @@ PUBLIC_API_BASE_URL=/api
 - `PORT`
 - `DATABASE_URL`
 - `LOG_LEVEL`
-- `JWT_SECRET`
+- `JWT_SECRET` if the app actually issues or verifies JWTs
 - `SESSION_SECRET`
 
 ### Database
@@ -286,8 +286,9 @@ APP_ENV=local
 PORT=8080
 DATABASE_URL=postgres://app:password@db:5432/app
 LOG_LEVEL=info
-JWT_SECRET=replace-me
-SESSION_SECRET=replace-me
+# Optional:
+# JWT_SECRET=replace-me
+# SESSION_SECRET=replace-me
 
 POSTGRES_DB=app
 POSTGRES_USER=app

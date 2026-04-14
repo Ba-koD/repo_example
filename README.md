@@ -89,6 +89,7 @@ docker compose up --build
 - backend build context: `backend`
 - backend Dockerfile path: `backend/Dockerfile`
 - Cloudflare API secret
+- env별 `subdomain` / `base_domain`
 - Ncloud access key / secret key
 - `dev / stage / prod` env / secret
 - Argo CD project / destination / GitOps repo 정보
@@ -96,6 +97,12 @@ docker compose up --build
 - hostname / Caddy routing
 
 예시는 [runtime-project-input.example.json](./runtime-project-input.example.json)에 넣어뒀다.
+
+추가 규칙:
+
+- `app repo URL`은 전역 값이라 `dev / stage / prod`에 공통 적용한다
+- Cloudflare hostname은 환경별 `subdomain + base_domain` 조합으로 만든다
+- `subdomain`이 `@` 또는 `*`면 bare domain 자체를 사용한다
 
 ## API Endpoints
 
