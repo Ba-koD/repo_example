@@ -1,0 +1,479 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: repo-example-dev-runtime
+  namespace: repo-example-dev
+  labels:
+    idea.rnen.kr/project: repo-example
+    idea.rnen.kr/environment: dev
+data:
+  APP_HOSTNAME: "dev.rnen.kr"
+  APP_REPOSITORY_URL: "https://github.com/Ba-koD/repo_example"
+  GIT_REF: "main"
+  ENTRY_SERVICE_NAME: "frontend"
+  BACKEND_SERVICE_NAME: "backend"
+  BACKEND_BASE_PATH: "/api"
+  CLOUDFLARE_TUNNEL_NAME: "idea-platform"
+  CLOUDFLARE_BASE_DOMAIN: "rnen.kr"
+  CLOUDFLARE_SUBDOMAIN: "dev"
+  HEALTHCHECK_PATH: "/api/healthz"
+  ADMIN_ALLOWED_SOURCE_IPS: "58.123.221.76/32"
+  ENV_ALLOWED_SOURCE_IPS: "58.123.221.76/32"
+  runtime.env: |
+
+    APP_DISPLAY_NAME=Repo Example Dev
+
+    APP_ENV=dev
+
+    POSTGRES_DB=idea_app_dev
+
+    POSTGRES_USER=idea
+
+    PUBLIC_API_BASE_PATH=/api
+
+    PUBLIC_API_BASE_URL=/api
+
+
+  project-state.json: |
+
+    {
+
+      "project": {
+
+        "name": "repo-example",
+
+        "app_repo_url": "https://github.com/Ba-koD/repo_example",
+
+        "git_ref": "main",
+
+        "repo_access_secret_ref": "github-repo-example-token"
+
+      },
+
+      "build": {
+
+        "source_strategy": "platform_build_runner",
+
+        "frontend_context": "frontend",
+
+        "frontend_dockerfile_path": "frontend/Dockerfile",
+
+        "backend_context": "backend",
+
+        "backend_dockerfile_path": "backend/Dockerfile"
+
+      },
+
+      "argo": {
+
+        "project_name": "default",
+
+        "destination_name": "",
+
+        "destination_server": "https://c612e89e-a9f9-492d-9963-b6ed986f50f7.kr.vnks.ntruss.com",
+
+        "gitops_repo_url": "https://github.com/Ba-koD/repo_example",
+
+        "gitops_repo_branch": "main",
+
+        "gitops_repo_path": "gitops/apps",
+
+        "gitops_repo_access_secret_ref": "github-repo-example-token",
+
+        "admin_password_secret_ref": "argocd-admin-password",
+
+        "admin_password_last_applied_at": "2026-04-15T00:13:30.182582+00:00",
+
+        "access_hint": "https://argo.rnen.kr"
+
+      },
+
+      "cloudflare": {
+
+        "enabled": true,
+
+        "account_id": "2052eb94f7b555bd3bf9db83c1f4edbf",
+
+        "zone_id": "aaafd11f9c6912ba37c1d52a69b78398",
+
+        "api_token_secret_ref": "cloudflare-api-token",
+
+        "tunnel_name": "idea-platform",
+
+        "route_mode": "platform_caddy",
+
+        "environments": {
+
+          "dev": {
+
+            "subdomain": "dev",
+
+            "base_domain": "rnen.kr"
+
+          },
+
+          "stage": {
+
+            "subdomain": "stage",
+
+            "base_domain": "rnen.kr"
+
+          },
+
+          "prod": {
+
+            "subdomain": "prod",
+
+            "base_domain": "rnen.kr"
+
+          }
+
+        }
+
+      },
+
+      "targets": {
+
+        "dev": {
+
+          "provider": "ncloud",
+
+          "cluster_type": "nks",
+
+          "namespace": "repo-example-dev",
+
+          "service_port": 80,
+
+          "ncloud": {
+
+            "region_code": "KR",
+
+            "cluster_name": "idea-dev",
+
+            "cluster_uuid": "c612e89e-a9f9-492d-9963-b6ed986f50f7",
+
+            "cluster_version": "1.33.4",
+
+            "cluster_type_code": "SVR.VNKS.STAND.C004.M016.G003",
+
+            "hypervisor_code": "KVM",
+
+            "auth_method": "access_key",
+
+            "access_key_secret_ref": "ncloud-dev-access-key",
+
+            "secret_key_secret_ref": "ncloud-dev-secret-key",
+
+            "zone_code": "KR-2",
+
+            "vpc_no": "136999",
+
+            "subnet_no": "296279",
+
+            "lb_subnet_no": "296281",
+
+            "lb_public_subnet_no": "296280",
+
+            "node_pool_id": "c612e89e-a9f9-492d-9963-b6ed986f50f7:repo-example-dev-poo",
+
+            "login_key_name": "idea-runtime-login",
+
+            "node_pool_name": "repo-example-dev-pool",
+
+            "node_count": 2,
+
+            "node_product_code": "s2-g3a",
+
+            "node_image_label": "ubuntu-22.04",
+
+            "block_storage_size_gb": 50,
+
+            "autoscale_enabled": true,
+
+            "autoscale_min_node_count": 2,
+
+            "autoscale_max_node_count": 4,
+
+            "vpc_cidr": "10.10.0.0/16",
+
+            "node_subnet_cidr": "10.10.1.0/24",
+
+            "lb_private_subnet_cidr": "10.10.10.0/24",
+
+            "lb_public_subnet_cidr": "10.10.11.0/24",
+
+            "cluster_endpoint": "https://c612e89e-a9f9-492d-9963-b6ed986f50f7.kr.vnks.ntruss.com"
+
+          }
+
+        },
+
+        "stage": {
+
+          "provider": "ncloud",
+
+          "cluster_type": "nks",
+
+          "namespace": "repo-example-stage",
+
+          "service_port": 80,
+
+          "ncloud": {
+
+            "region_code": "KR",
+
+            "cluster_name": "idea-stage",
+
+            "cluster_uuid": "",
+
+            "cluster_version": "1.33.4",
+
+            "cluster_type_code": "SVR.VNKS.STAND.C004.M016.G003",
+
+            "hypervisor_code": "KVM",
+
+            "auth_method": "access_key",
+
+            "access_key_secret_ref": "ncloud-stage-access-key",
+
+            "secret_key_secret_ref": "ncloud-stage-secret-key",
+
+            "zone_code": "KR-2",
+
+            "vpc_no": "vpc-stage",
+
+            "subnet_no": "subnet-stage",
+
+            "lb_subnet_no": "lb-subnet-stage",
+
+            "lb_public_subnet_no": "",
+
+            "node_pool_id": "",
+
+            "login_key_name": "idea-runtime-login",
+
+            "node_pool_name": "repo-example-stage-pool",
+
+            "node_count": 2,
+
+            "node_product_code": "s2-g3a",
+
+            "node_image_label": "ubuntu-22.04",
+
+            "block_storage_size_gb": 50,
+
+            "autoscale_enabled": true,
+
+            "autoscale_min_node_count": 2,
+
+            "autoscale_max_node_count": 4,
+
+            "vpc_cidr": "10.20.0.0/16",
+
+            "node_subnet_cidr": "10.20.1.0/24",
+
+            "lb_private_subnet_cidr": "10.20.10.0/24",
+
+            "lb_public_subnet_cidr": "10.20.11.0/24"
+
+          }
+
+        },
+
+        "prod": {
+
+          "provider": "ncloud",
+
+          "cluster_type": "nks",
+
+          "namespace": "repo-example-prod",
+
+          "service_port": 80,
+
+          "ncloud": {
+
+            "region_code": "KR",
+
+            "cluster_name": "idea-prod",
+
+            "cluster_uuid": "",
+
+            "cluster_version": "1.33.4",
+
+            "cluster_type_code": "SVR.VNKS.STAND.C004.M016.G003",
+
+            "hypervisor_code": "KVM",
+
+            "auth_method": "access_key",
+
+            "access_key_secret_ref": "ncloud-prod-access-key",
+
+            "secret_key_secret_ref": "ncloud-prod-secret-key",
+
+            "zone_code": "KR-2",
+
+            "vpc_no": "vpc-prod",
+
+            "subnet_no": "subnet-prod",
+
+            "lb_subnet_no": "lb-subnet-prod",
+
+            "lb_public_subnet_no": "",
+
+            "node_pool_id": "",
+
+            "login_key_name": "idea-runtime-login",
+
+            "node_pool_name": "repo-example-prod-pool",
+
+            "node_count": 3,
+
+            "node_product_code": "s4-g3a",
+
+            "node_image_label": "ubuntu-22.04",
+
+            "block_storage_size_gb": 100,
+
+            "autoscale_enabled": true,
+
+            "autoscale_min_node_count": 3,
+
+            "autoscale_max_node_count": 6,
+
+            "vpc_cidr": "10.30.0.0/16",
+
+            "node_subnet_cidr": "10.30.1.0/24",
+
+            "lb_private_subnet_cidr": "10.30.10.0/24",
+
+            "lb_public_subnet_cidr": "10.30.11.0/24"
+
+          }
+
+        }
+
+      },
+
+      "routing": {
+
+        "entry_service_name": "frontend",
+
+        "backend_service_name": "backend",
+
+        "backend_base_path": "/api",
+
+        "dev_hostname": "dev.rnen.kr",
+
+        "stage_hostname": "stage.rnen.kr",
+
+        "prod_hostname": "prod.rnen.kr"
+
+      },
+
+      "provisioning": {
+
+        "terraform_executable": "terraform",
+
+        "site": "public",
+
+        "secret_values": {},
+
+        "last_results": {}
+
+      },
+
+      "env": {
+
+        "dev": {
+
+          "APP_ENV": "dev",
+
+          "APP_DISPLAY_NAME": "Repo Example Dev",
+
+          "PUBLIC_API_BASE_URL": "/api",
+
+          "PUBLIC_API_BASE_PATH": "/api",
+
+          "POSTGRES_DB": "idea_app_dev",
+
+          "POSTGRES_USER": "idea"
+
+        },
+
+        "stage": {
+
+          "APP_ENV": "stage",
+
+          "APP_DISPLAY_NAME": "Repo Example Stage",
+
+          "PUBLIC_API_BASE_URL": "/api"
+
+        },
+
+        "prod": {
+
+          "APP_ENV": "prod",
+
+          "APP_DISPLAY_NAME": "Repo Example Prod",
+
+          "PUBLIC_API_BASE_URL": "/api",
+
+          "NODE_ENV": "production"
+
+        }
+
+      },
+
+      "secrets": {
+
+        "dev": {
+
+          "DATABASE_URL": "<redacted>",
+
+          "POSTGRES_PASSWORD": "<redacted>"
+
+        },
+
+        "stage": {},
+
+        "prod": {}
+
+      },
+
+      "access": {
+
+        "admin_allowed_source_ips": [
+
+          "58.123.221.76/32"
+
+        ],
+
+        "dev_allowed_source_ips": [
+
+          "58.123.221.76/32"
+
+        ],
+
+        "stage_allowed_source_ips": [
+
+          "58.123.221.76/32"
+
+        ],
+
+        "prod_allowed_source_ips": []
+
+      },
+
+      "delivery": {
+
+        "prod_blue_green_enabled": true,
+
+        "healthcheck_path": "/api/healthz",
+
+        "healthcheck_timeout_seconds": 30,
+
+        "rollback_on_failure": true
+
+      }
+
+    }
