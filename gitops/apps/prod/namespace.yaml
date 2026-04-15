@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: repo-example-prod
+  labels:
+    idea.rnen.kr/project: repo-example
+    idea.rnen.kr/environment: prod
+    idea.rnen.kr/provider: ncloud
