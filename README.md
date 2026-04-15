@@ -60,8 +60,8 @@ docker compose up --build
 - frontend는 injected `PUBLIC_API_BASE_URL`로 backend를 호출한다
 - backend는 `db` 서비스명으로 PostgreSQL에 붙는다
 - DB는 외부 공개 대상이 아니다
-- app 내부 nginx는 정적 파일 서빙만 담당한다
-- 외부 hostname과 `/api` 라우팅은 플랫폼 `Caddy`가 맡는 것을 기본으로 한다
+- app 내부 nginx는 정적 파일 서빙과 `/api -> backend` reverse proxy를 같이 담당한다
+- 외부 hostname은 플랫폼이 연결하되, 앱 내부에서는 same-origin `/api`를 유지하는 것을 기본으로 한다
 
 즉 이 repo는 아래 항목을 직접 책임지지 않는다.
 

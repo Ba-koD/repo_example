@@ -70,7 +70,7 @@ data:
 
         "destination_name": "",
 
-        "destination_server": "https://kubernetes.default.svc",
+        "destination_server": "https://5f9d8b6e-d07f-465d-9aa2-f085035e95b7.kr.vnks.ntruss.com",
 
         "gitops_repo_url": "https://github.com/Ba-koD/repo_example",
 
@@ -82,7 +82,7 @@ data:
 
         "admin_password_secret_ref": "argocd-admin-password",
 
-        "admin_password_last_applied_at": "2026-04-15T00:13:30.182582+00:00",
+        "admin_password_last_applied_at": "",
 
         "access_hint": "https://argo.rnen.kr"
 
@@ -150,7 +150,7 @@ data:
 
             "cluster_name": "idea-dev",
 
-            "cluster_uuid": "ace5f709-15f2-42bd-ba0d-6af09de849af",
+            "cluster_uuid": "5f9d8b6e-d07f-465d-9aa2-f085035e95b7",
 
             "cluster_version": "1.33.4",
 
@@ -166,15 +166,15 @@ data:
 
             "zone_code": "KR-2",
 
-            "vpc_no": "137008",
+            "vpc_no": "137015",
 
-            "subnet_no": "296299",
+            "subnet_no": "296311",
 
-            "lb_subnet_no": "296298",
+            "lb_subnet_no": "296310",
 
-            "lb_public_subnet_no": "296300",
+            "lb_public_subnet_no": "296309",
 
-            "node_pool_id": "c612e89e-a9f9-492d-9963-b6ed986f50f7:repo-example-dev-poo",
+            "node_pool_id": "5f9d8b6e-d07f-465d-9aa2-f085035e95b7:repo-example-dev-poo",
 
             "login_key_name": "idea-runtime-login",
 
@@ -202,7 +202,7 @@ data:
 
             "lb_public_subnet_cidr": "10.10.11.0/24",
 
-            "cluster_endpoint": "https://ace5f709-15f2-42bd-ba0d-6af09de849af.kr.vnks.ntruss.com"
+            "cluster_endpoint": "https://5f9d8b6e-d07f-465d-9aa2-f085035e95b7.kr.vnks.ntruss.com"
 
           }
 
