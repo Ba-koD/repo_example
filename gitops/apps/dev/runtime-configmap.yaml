@@ -82,7 +82,7 @@ data:
 
         "admin_password_secret_ref": "argocd-admin-password",
 
-        "admin_password_last_applied_at": "",
+        "admin_password_last_applied_at": "2026-04-15T02:33:10.474515+00:00",
 
         "access_hint": "https://argo.rnen.kr"
 
