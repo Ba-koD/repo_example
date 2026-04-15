@@ -70,7 +70,7 @@ data:
 
         "destination_name": "",
 
-        "destination_server": "https://c612e89e-a9f9-492d-9963-b6ed986f50f7.kr.vnks.ntruss.com",
+        "destination_server": "https://kubernetes.default.svc",
 
         "gitops_repo_url": "https://github.com/Ba-koD/repo_example",
 
@@ -150,7 +150,7 @@ data:
 
             "cluster_name": "idea-dev",
 
-            "cluster_uuid": "c612e89e-a9f9-492d-9963-b6ed986f50f7",
+            "cluster_uuid": "ace5f709-15f2-42bd-ba0d-6af09de849af",
 
             "cluster_version": "1.33.4",
 
@@ -166,13 +166,13 @@ data:
 
             "zone_code": "KR-2",
 
-            "vpc_no": "136999",
+            "vpc_no": "137008",
 
-            "subnet_no": "296279",
+            "subnet_no": "296299",
 
-            "lb_subnet_no": "296281",
+            "lb_subnet_no": "296298",
 
-            "lb_public_subnet_no": "296280",
+            "lb_public_subnet_no": "296300",
 
             "node_pool_id": "c612e89e-a9f9-492d-9963-b6ed986f50f7:repo-example-dev-poo",
 
@@ -202,7 +202,7 @@ data:
 
             "lb_public_subnet_cidr": "10.10.11.0/24",
 
-            "cluster_endpoint": "https://c612e89e-a9f9-492d-9963-b6ed986f50f7.kr.vnks.ntruss.com"
+            "cluster_endpoint": "https://ace5f709-15f2-42bd-ba0d-6af09de849af.kr.vnks.ntruss.com"
 
           }
 
